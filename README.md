@@ -1,11 +1,13 @@
-# shell-playground
+# Regular expressions
+
+    ./regex.sh
 
 
-## Grep
+# Grep
 
     grep -Rin "report_dir" .
 
 
-## Find
+# Find
 
     find -name content.cfg

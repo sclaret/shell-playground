@@ -1,9 +1,9 @@
 #! /usr/bin/env bash
 
 function test_regex {
-  while read line; do
-    echo "$line =~ $1: "
-    [[ $line =~ $1 ]]
+  while read pattern line; do
+    echo "$line =~ $pattern: "
+    [[ $line =~ $pattern ]]
     case $? in
       0) echo "Match: ${BASH_REMATCH[@]}"
          ;;
@@ -18,21 +18,21 @@ function test_regex {
 }
 
 pattern="^(/Volumes/[^/]+)(.*)$"
-
-# echo /Volumes/seagate_hdd/restic-utils | test_regex $pattern
+p=$pattern
+# echo $p /Volumes/seagate_hdd/restic-utils | test_regex $pattern
 # exit
 
-test_regex $pattern <<EOF abc
-/home/sclaret
-/Volumes/seagate_hdd/restic-utils
-/Volumes/seagate_hdd/restic-utils/
-/Volumes/seagate_hdd/restic-utils/lib
-/Volumes/seagate_hdd/restic-utils/lib/
-/Volumes/seagate_hdd/
-/Volumes/seagate_hdd
-/Volumes/seag
-/Volumes/a
-/Volumes/
-/Volumes
-/volumes/seag
+test_regex <<EOF
+$p /home/sclaret
+$p /Volumes/seagate_hdd/restic-utils
+$p /Volumes/seagate_hdd/restic-utils/
+$p /Volumes/seagate_hdd/restic-utils/lib
+$p /Volumes/seagate_hdd/restic-utils/lib/
+$p /Volumes/seagate_hdd/
+$p /Volumes/seagate_hdd
+$p /Volumes/seag
+$p /Volumes/a
+$p /Volumes/
+$p /Volumes
+$p /volumes/seag
 EOF

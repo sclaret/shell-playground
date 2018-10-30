@@ -7,13 +7,17 @@ function process_lines {
   done
 }
 
+
+# Note: set pattern in a variable, to avoid quoting problems
+# Tips: to debug, add match groups
 function test_regex {
-  echo "$1 =~ $2: "
-  [[ $1 =~ $2 ]]
+  echo "'$1' =~ '$2': "
+  [[ "$1" =~ $2 ]]
   case $? in
-    0) echo "Match: ${BASH_REMATCH[@]}"
+    0) echo "Match: '${BASH_REMATCH[@]}'"
        ;;
-    1) echo "NO MATCH";;
+    1) echo "NO MATCH"
+       ;;
     2) echo "Error: regular expression is syntactically incorrect."
        ;;
     *) echo "Unknown error."
@@ -21,12 +25,10 @@ function test_regex {
   esac
 }
 
-pattern="^(/Volumes/[^/]+)(.*)$"
-p=$pattern
+# test_regex '\u@\h:\W$ ' '^\\u@\\h:\\W\$ $'
 
-#test_regex /Volumes/seagate_hdd/restic-utils $p
-#exit
-
+p='^(/Volumes/[^/]+)(.*)$'
+test_regex /Volumes/seagate_hdd/restic-utils $p
 process_lines <<EOF
 /home/sclaret $p
 /Volumes/seagate_hdd/restic-utils $p

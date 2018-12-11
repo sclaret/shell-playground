@@ -1,0 +1,10 @@
+--2018-12-10 19:57:22--  http://spacemacs.org/img/logo.svg
+Resolving spacemacs.org (spacemacs.org)... 192.30.252.154, 192.30.252.153
+Connecting to spacemacs.org (spacemacs.org)|192.30.252.154|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 21476 (21K) [image/svg+xml]
+Saving to: ‘logo.svg’
+
+
+2018-12-10 19:57:22 (553 KB/s) - ‘logo.svg’ saved [21476/21476]
+
